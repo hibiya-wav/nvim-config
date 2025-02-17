@@ -109,6 +109,11 @@ _G.packer_plugins = {
     path = "/home/danny/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["iron.nvim"] = {
+    loaded = true,
+    path = "/home/danny/.local/share/nvim/site/pack/packer/start/iron.nvim",
+    url = "https://github.com/Vigemus/iron.nvim"
+  },
   ["lsp-zero.nvim"] = {
     loaded = true,
     path = "/home/danny/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
@@ -166,6 +171,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/danny/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["tree-sitter-hcl"] = {
+    loaded = true,
+    path = "/home/danny/.local/share/nvim/site/pack/packer/start/tree-sitter-hcl",
+    url = "https://github.com/tree-sitter-grammars/tree-sitter-hcl"
   },
   undotree = {
     loaded = true,

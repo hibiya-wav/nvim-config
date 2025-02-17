@@ -38,7 +38,7 @@ return require('packer').startup(function(use)
 		}
 	}
 
-	use('folke/zen-mode.nvim')
+	use ('folke/zen-mode.nvim')
 
     use {
         "windwp/nvim-autopairs",
@@ -48,6 +48,10 @@ return require('packer').startup(function(use)
         end
     }
 
-    use('tpope/vim-commentary')
+    use ('tpope/vim-commentary')
+
+    use ('tree-sitter-grammars/tree-sitter-hcl')
+
+    use ('Vigemus/iron.nvim')
 
 end)
