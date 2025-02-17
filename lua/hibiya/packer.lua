@@ -54,4 +54,6 @@ return require('packer').startup(function(use)
 
     use ('Vigemus/iron.nvim')
 
+    use ("dfendr/clipboard-image.nvim")
+
 end)

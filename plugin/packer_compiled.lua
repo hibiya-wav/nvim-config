@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/danny/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["clipboard-image.nvim"] = {
+    loaded = true,
+    path = "/home/danny/.local/share/nvim/site/pack/packer/start/clipboard-image.nvim",
+    url = "https://github.com/dfendr/clipboard-image.nvim"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/home/danny/.local/share/nvim/site/pack/packer/start/cmp-buffer",
