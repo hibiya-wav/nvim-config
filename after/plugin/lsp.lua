@@ -1,6 +1,20 @@
+-- Required for basedpyright configuration
+local nvim_lsp = require("lspconfig")
+local util = nvim_lsp.util
+local path = util.path
+
 -- Initialize lsp-zero
 local lsp_zero = require('lsp-zero')
 
+-- Function to get Python path
+local function get_python_path()
+    if vim.env.VIRTUAL_ENV then
+        return path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+    end
+    return vim.fn.exepath("python3") or vim.fn.exepath("python") or "python"
+end
+
+-- Configure lua language server
 lsp_zero.configure('lua_ls', {
     settings = {
         Lua = {
@@ -19,11 +33,12 @@ lspconfig_defaults.capabilities = vim.tbl_deep_extend(
     require('cmp_nvim_lsp').default_capabilities()
 )
 
+-- LSP Attach autocmd
 vim.api.nvim_create_autocmd('LspAttach', {
     desc = 'LSP actions',
     callback = function(event)
-        -- Keybindings
         local opts = {buffer = event.buf}
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
 
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
@@ -38,11 +53,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 })
 
--- Setup Mason for managing LSP servers
+-- Setup Mason
 require('mason').setup({})
 require('mason-lspconfig').setup({
     ensure_installed = {
-        'pyright',
+        'basedpyright',
         'sqlls',
         'terraformls',
         'yamlls',
@@ -55,6 +70,47 @@ require('mason-lspconfig').setup({
     handlers = {
         lsp_zero.default_setup,
     },
+})
+
+-- Configure basedpyright
+nvim_lsp.basedpyright.setup({
+    on_attach = function(client, bufnr)
+        client.server_capabilities.document_formatting = false
+        client.server_capabilities.semanticTokensProvider = nil
+    end,
+    capabilities = lspconfig_defaults.capabilities,
+    settings = {
+        basedpyright = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = "openFilesOnly",
+                useLibraryCodeForTypes = true,
+                typeCheckingMode = "standard",
+                diagnosticSeverityOverrides = {
+                    reportAny = false,
+                    reportMissingTypeArgument = false,
+                    reportMissingTypeStubs = false,
+                    reportUnknownArgumentType = false,
+                    reportUnknownMemberType = false,
+                    reportUnknownParameterType = false,
+                    reportUnknownVariableType = false,
+                    reportUnusedCallResult = false,
+                },
+                inlayHints = {
+                    variableTypes = true,
+                    functionReturnTypes = true,
+                    callArgumentNames = true,
+                    genericTypes = true,
+                }
+            },
+        },
+        python = {},
+    },
+    before_init = function(_, config)
+        local python_path = get_python_path()
+        config.settings.python.pythonPath = python_path
+        vim.notify(python_path)
+    end,
 })
 
 -- Configure completion
@@ -78,3 +134,4 @@ cmp.setup({
 
 -- Final setup
 lsp_zero.setup()
+

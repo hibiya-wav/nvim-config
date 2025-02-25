@@ -109,15 +109,15 @@ _G.packer_plugins = {
     path = "/home/danny/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["conform.nvim"] = {
+    loaded = true,
+    path = "/home/danny/.local/share/nvim/site/pack/packer/start/conform.nvim",
+    url = "https://github.com/stevearc/conform.nvim"
+  },
   ["friendly-snippets"] = {
     loaded = true,
     path = "/home/danny/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
-  },
-  ["iron.nvim"] = {
-    loaded = true,
-    path = "/home/danny/.local/share/nvim/site/pack/packer/start/iron.nvim",
-    url = "https://github.com/Vigemus/iron.nvim"
   },
   ["lsp-zero.nvim"] = {
     loaded = true,

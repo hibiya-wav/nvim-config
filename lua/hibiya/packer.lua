@@ -52,8 +52,10 @@ return require('packer').startup(function(use)
 
     use ('tree-sitter-grammars/tree-sitter-hcl')
 
-    use ('Vigemus/iron.nvim')
+    -- use ('Vigemus/iron.nvim')
 
     use ("dfendr/clipboard-image.nvim")
+
+    use ("stevearc/conform.nvim")
 
 end)
